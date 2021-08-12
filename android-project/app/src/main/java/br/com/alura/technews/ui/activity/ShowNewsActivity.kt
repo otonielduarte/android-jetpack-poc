@@ -5,15 +5,13 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import br.com.alura.technews.R
-import br.com.alura.technews.database.AppDatabase
 import br.com.alura.technews.model.News
-import br.com.alura.technews.repository.NewsRepository
 import br.com.alura.technews.ui.activity.extensions.showError
 import br.com.alura.technews.ui.viewmodel.ShowNewsViewModel
-import br.com.alura.technews.ui.viewmodel.factory.ShowNewsViewModelFactory
-import kotlinx.android.synthetic.main.activity_visualiza_noticia.*
+import kotlinx.android.synthetic.main.activity_show_new.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 private const val NEWS_NOT_FOUND = "News not found"
 private const val APPBAR_TITLE = "News"
@@ -25,18 +23,15 @@ class ShowNewsActivity : AppCompatActivity() {
         intent.getLongExtra(NEWS_KEY_ID, 0)
     }
 
-    private val viewModel: ShowNewsViewModel by lazy {
-        val repository = NewsRepository(AppDatabase.getInstance(this).newsDAO)
-        val factory = ShowNewsViewModelFactory(newsId, repository)
-        val provider = ViewModelProvider(this, factory)
-        provider.get(ShowNewsViewModel::class.java)
+    private val viewModel by viewModel<ShowNewsViewModel> {
+        parametersOf(newsId)
     }
 
     private lateinit var news: News
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_visualiza_noticia)
+        setContentView(R.layout.activity_show_new)
         title = APPBAR_TITLE
         checkNewsId()
         getSelectedNews()

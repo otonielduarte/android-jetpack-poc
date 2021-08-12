@@ -5,4 +5,5 @@
     <string name="titulo">Título</string>
     <string name="escreva_seu_texto">Escreva seu texto…</string>
     <string name="salvar">Salvar</string>
+    <string name="fab_button_description">Fab button to add new notice</string>
 </resources>

@@ -32,6 +32,8 @@ android {
 dependencies {
     def room_version = "2.3.0"
     def lifecycle_version = "2.2.0"
+    def koin_version = "2.2.3"
+
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
 
@@ -39,6 +41,8 @@ dependencies {
 
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0"
+
+    implementation "io.insert-koin:koin-android:3.1.2"
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"

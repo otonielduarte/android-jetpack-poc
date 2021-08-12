@@ -5,15 +5,12 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import br.com.alura.technews.R
-import br.com.alura.technews.database.AppDatabase
 import br.com.alura.technews.model.News
-import br.com.alura.technews.repository.NewsRepository
 import br.com.alura.technews.ui.activity.extensions.showError
 import br.com.alura.technews.ui.viewmodel.FormNewsViewModel
-import br.com.alura.technews.ui.viewmodel.factory.FormNewsViewModelFactory
-import kotlinx.android.synthetic.main.activity_formulario_noticia.*
+import kotlinx.android.synthetic.main.activity_form_news.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 private const val TITLE_ON_EDIT = "Edit News"
 private const val TITLE = "Create News"
@@ -24,17 +21,12 @@ class FormNewsActivity : AppCompatActivity() {
     private val newsId: Long by lazy {
         intent.getLongExtra(NEWS_KEY_ID, 0)
     }
+    private val viewModel by viewModel<FormNewsViewModel>()
 
-    private val viewModel: FormNewsViewModel by lazy {
-        val repository = NewsRepository(AppDatabase.getInstance(this).newsDAO)
-        val factory = FormNewsViewModelFactory(repository)
-        val provider = ViewModelProvider(this, factory)
-        provider.get(FormNewsViewModel::class.java)
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_formulario_noticia)
+        setContentView(R.layout.activity_form_news)
         handleTitle()
         bindForm()
     }

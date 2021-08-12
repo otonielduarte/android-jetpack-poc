@@ -7,6 +7,7 @@ import com.google.gson.annotations.SerializedName
 @Entity
 data class News(
     @PrimaryKey(autoGenerate = true)
+    @SerializedName("id")
     val id: Long = 0,
     @SerializedName("titulo")
     val title: String = "",

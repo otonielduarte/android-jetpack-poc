@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.com.alura.technews.R
 import br.com.alura.technews.model.News
-import kotlinx.android.synthetic.main.item_noticia.view.*
+import kotlinx.android.synthetic.main.item_new.view.*
 
 class ListNewsAdapter(
     private val context: Context,
@@ -21,7 +21,7 @@ class ListNewsAdapter(
     ): ViewHolder {
         val createdView = LayoutInflater.from(context)
             .inflate(
-                R.layout.item_noticia,
+                R.layout.item_new,
                 parent, false
             )
         return ViewHolder(createdView)
